@@ -1,6 +1,6 @@
 import { By } from "selenium-webdriver";
-Import { BasePage } from "./basePage";
-const fs = required('fs')
+import { BasePage } from './basePage';
+const fs = require('fs')
 
 export class NicolesPage extends BasePage {
     spicesBlendsMenu: By = By.xpath ('//li[@class="navmenu-item navmenu-basic__item navmenu-item-parent navmenu-basic__item-parent navmenu-id-spices-blends"]');
@@ -11,10 +11,19 @@ export class NicolesPage extends BasePage {
     address1: By = By.xpath ('//input[@id = "shipping-address1"]');
     cityField: By = By.xpath ('//input[@id = "TextField3"]');
     stateField: By = By.xpath ('//select[@name = "zone"]');
+    selectState: By = By.xpath ('//option[text() = "Missouri"]');
     zipCode: By = By.xpath ('//input[@id = "TextField4"]');
-
 
     constructor () {
         super({url: 'https://www.savoryspiceshop.com/'});
     };
-}
+    async search(streetAddress: string) {
+        return this.setInput(this.address1, `${streetAddress}`); 
+};
+    async searchcity(city: string) {
+    return this.setInput(this.cityField, `${city}`); 
+};
+async searchzip(zipCode: string) {
+    return this.setInput(this.selectState, `${zipCode}`); 
+};
+};
