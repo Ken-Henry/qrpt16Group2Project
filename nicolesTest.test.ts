@@ -15,15 +15,21 @@ test('Shipping Rate', async () => {
     await spice.click(spice.stateField);
     await spice.click(spice.selectState);
     await spice.click(spice.zipCode);
-    await spice.searchzip('64078');
-    
+    await spice.searchzip(64078);
+    await fs.writeFile(`${__dirname}/shipChgs.png`, 
+        await spice.driver.takeScreenshot(), "base64",    (e) => {
+            if(e) console.error(e)
+            else console.log('page saved')    
+});
 
-})
-
-
-
-
-
-
-
-await page.driver.quit()
+test('Store Directory', async () => {
+    await spice.click(spice.store);
+    await spice.click(spice.storeDir);
+    await spice.click(spice.nmLocation);
+    await fs.writeFile(`${__dirname}/storeNM.png`, 
+    await spice.driver.takeScreenshot(), "base64",    (e) => {
+            if(e) console.error(e)
+            else console.log('page saved') 
+});
+    await spice.driver.quit()
+});
