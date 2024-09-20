@@ -1,5 +1,6 @@
 import { NicolesPage } from "./nicolesPage";
 const spice = new NicolesPage();
+const fs = require('fs')
 
 test('Shipping Rate', async () => {
     await spice.navigate();
@@ -21,7 +22,7 @@ test('Shipping Rate', async () => {
             if(e) console.error(e)
             else console.log('page saved')    
 });
-
+});
 test('Store Directory', async () => {
     await spice.click(spice.store);
     await spice.click(spice.storeDir);
