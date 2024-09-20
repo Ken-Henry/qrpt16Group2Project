@@ -1,11 +1,13 @@
 import { By } from "selenium-webdriver";
-import { BasePage } from './basePage';
+import {BasePage} from './basepage'
 const fs = require('fs')
 
 export class NicolesPage extends BasePage {
-    spicesBlendsMenu: By = By.xpath ('//li[@class="navmenu-item navmenu-basic__item navmenu-item-parent navmenu-basic__item-parent navmenu-id-spices-blends"]');
+    popUpClose: By = By.xpath('//button[@class = "needsclick klaviyo-close-form go260142404 kl-private-reset-css-Xuajs1"]'); 
+    spicesBlendsMenu: By = By.xpath('(//span[@class="navmenu-icon navmenu-icon-depth-1"])[1]'); 
     newProducts: By = By.xpath ('(//li[@class = "navmenu-item navmenu-id-new-products"])[1]');
-    saltedCaramel: By = By.xpath ('(//span[@class = "atc-button--text custom-card-button-text"])[9]');
+    saltedCaramelSC: By = By.xpath('(//img)[11]'); 
+    saltedCaramel: By = By.xpath('(//img)[10]');
     addToCart: By = By.xpath ('//span[@class = "atc-button--text"]');
     checkOut: By = By.xpath ('(//button[@class = "button full"])[6]');
     address1: By = By.xpath ('//input[@id = "shipping-address1"]');
@@ -26,8 +28,13 @@ export class NicolesPage extends BasePage {
     async searchcity(city: string) {
     return this.setInput(this.cityField, `${city}`); 
 };
-    async searchzip(zipCode: number) {
-    return this.setInput(this.selectState, `${zipCode}`); 
+    async searchzip(zipCode: string) {
+    return this.setInput(this.zipCode, `${zipCode}`); 
 };
-    
+async scrollToElement(elementBy: By) {
+    const scrollThing = await this.getElement(elementBy); 
+    await this.driver.actions()
+    .move({origin: scrollThing})
+    .perform()
+}; 
 }
