@@ -18,6 +18,9 @@ export class NicolesPage extends BasePage {
     store: By = By.xpath ('(//h6[@class = "header-item"])[1]');
     storeDir: By = By.xpath ('//a[text() = "Store Directory"]');
     nmLocation: By = By.xpath ('(//a[@class = "location-list"])[11]');
+    sauces: By = By.xpath ('(//li[@class = "navmenu-item navmenu-id-sauces"])[1]')
+    cueGlue: By = By.xpath ('(//a[@class = "button-secondary view-product add-to-cart-custom mdc-ripple-surface mdc-ripple-upgraded"])[1]')
+    checkOutCue: By = By.xpath ('(//button[@class = "button full"])[5]');
 
     constructor () {
         super({url: 'https://www.savoryspiceshop.com/'});

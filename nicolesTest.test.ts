@@ -43,3 +43,15 @@ test('Store Directory', async () => {
 });
 await spice.driver.quit()
 });
+
+test('Add sauce to cart', async () => {
+    await spice.navigate()
+    await spice.click(spice.spicesBlendsMenu);
+    await spice.click(spice.sauces);
+    await spice.click(spice.cueGlue);
+    await spice.click(spice.addToCart);
+    await spice.click(spice.checkOutCue);
+});
+await spice.driver.quit()
+    
+
