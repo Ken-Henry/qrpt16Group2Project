@@ -1,4 +1,4 @@
-import { codeAlongPage } from "./codeAlongPage";
+import { CodeAlongPage } from './codeAlongPage'
 const page = new CodeAlongPage(); 
 
 test('clicks on youtube and takes a screenshot', async () => {

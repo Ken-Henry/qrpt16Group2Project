@@ -1,5 +1,5 @@
 import { By } from "selenium-webdriver";
-import { BasePage } from "./basePage";
+import { BasePage } from "./basepage";
 const fs = require('fs')
 
 export class CodeAlongPage extends BasePage {
