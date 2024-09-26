@@ -1,21 +1,33 @@
 import { By } from "selenium-webdriver";
-Import { BasePage } from "./basePage";
-const fs = required('fs')
+import { BasePage } from "./basePage";
+const fs = require('fs')
 
 export class CodeAlongPage extends BasePage {
-    youtube: By = By.xpath('(//a[@*])[261]');
+    youtube: By = By.xpath('(//a[@*])[261]'); 
 
-    constructor () {
-        super({url: 'https://www/nasa.gov/'});
-    };
+    constructor() {
+        super({url: 'https://www.nasa.gov/'}); 
+    }; 
 
     async scrollToElement(elementBy: By) {
-        const scrollThing = await this.getElement(elementBy);
+        const scrollThing = await this.getElement(elementBy); 
         await this.driver.actions()
         .move({origin: scrollThing})
         .perform()
-    };
+    }; 
 
-    async tabs()
-
+    async tabSwitch() {
+        let myTabs = await this.driver.getAllWindowHandles(); 
+        await this.driver.switchTo().window(myTabs[1]);
+        await this.driver.sleep(1000); 
+        fs.writeFile(`${__dirname}/youtube.png`, 
+            await this.driver.takeScreenshot(), "base64",
+            (e) => {
+                if (e) console.error(e)
+                else console.log('Look its youtube'); 
+            }
+        ); 
+        await this.driver.close(); 
+        await this.driver.switchTo().window(myTabs[0]); 
+    }; 
 }
